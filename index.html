@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <title>Lachimolala 7 Days a Week | Korean Café in Chennai</title>
+    <meta name="description" content="Discover Lachimolala 7 Days a Week, a Korean-themed café in Old Washermanpet, Chennai, serving Korean food, bubble tea and a cozy K-pop-inspired café experience." />
+    
+    <!-- Preload Critical Hero Background and Logo -->
+    <link rel="preload" as="image" href="/images/hero-cafe.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/images/hero-cafe-clean.jpg" type="image/jpeg" />
+    <link rel="preload" as="image" href="/logo.png" type="image/png" />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:title" content="Lachimolala 7 Days a Week | Korean Café in Chennai" />
+    <meta property="og:description" content="Good Food. Good People. Good Vibes. 7 Days a Week. Authentic Shin Ramyun, bubble tea, K-pop vibes, and cozy hangout in Washermanpet, Chennai." />
+    <meta property="og:image" content="/images/hero-cafe.webp" />
+    <meta name="theme-color" content="#140E0A" />
+
+    <!-- Google Fonts: Plus Jakarta Sans, Caveat (handwritten), Gaegu (cute Korean & doodles), Noto Sans KR, Nanum Pen Script -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Gaegu:wght@400;700&family=Nanum+Pen+Script&family=Marck+Script&family=Noto+Sans+KR:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CafeOrCoffeeShop",
+      "name": "Lachimolala 7 days a week",
+      "image": "/images/hero-cafe.webp",
+      "@id": "https://lachimolala7days.com",
+      "url": "https://lachimolala7days.com",
+      "telephone": "+916379211723",
+      "priceRange": "₹1 - ₹400",
+      "servesCuisine": ["Korean", "Beverages", "Dessert", "Bubble Tea"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "2, 55, W Kal Mandapam Rd, Pudumanaikuppam",
+        "addressLocality": "Old Washermanpet, Chennai",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "600013",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.1118,
+        "longitude": 80.2917
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.4",
+        "reviewCount": "27"
+      },
+      "hasMenu": "#menu",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "11:00",
+        "closes": "22:30"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-cream-50 text-espresso-900 font-sans antialiased selection:bg-kpink selection:text-white overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FAF6ED;
+    color: #1E1612;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #FF6584;
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  /* Torn paper / washi tape aesthetics */
+  .washi-tape-yellow {
+    background: rgba(254, 240, 138, 0.85);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    backdrop-filter: blur(2px);
+  }
+
+  .washi-tape-pink {
+    background: rgba(254, 205, 211, 0.85);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    backdrop-filter: blur(2px);
+  }
+
+  /* Polaroid photo card style with textured white border */
+  .polaroid-frame {
+    background: #FFFFFF;
+    box-shadow: 0 10px 25px -4px rgba(27, 20, 15, 0.12), 0 4px 6px -2px rgba(27, 20, 15, 0.05);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .polaroid-frame:hover {
+    transform: translateY(-4px) rotate(0deg) scale(1.02);
+    box-shadow: 0 20px 30px -10px rgba(27, 20, 15, 0.2);
+  }
+
+  /* Soft paper card style */
+  .paper-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(222, 198, 166, 0.25);
+    box-shadow: 0 4px 20px -2px rgba(35, 27, 21, 0.05);
+  }
+
+  /* Hide scrollbar for clean horizontal scrolls */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Animations for gentle pulse or reveal */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-6px) rotate(var(--rot, 0deg)); }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+/* ============================================================
+   LACHIMOLALA 3-COLOR OUTER GLOW SYSTEM (THIN & TIGHT)
+   The logo artwork (/public/logo.png) remains 100% static & sharp.
+   The outer glow hugs the logo edges tightly (reduced by ~65-70%).
+   Breathing: DIM (opacity ~0.28) → BRIGHT (opacity ~0.65) → DIM (opacity ~0.28).
+   Colors derived from /public/logo.png:
+   1. Soft Cream / Ivory: rgba(255, 246, 229, ...)
+   2. Pastel Sky Blue:    rgba(142, 197, 252, ...)
+   3. Soft Pink:          rgba(255, 133, 162, ...)
+   ============================================================ */
+
+/* 1. Base Static Wrapper (Zero animation on wrapper or logo) */
+.logo-glow-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure the logo itself NEVER blinks, dims, or blurs */
+.logo-glow-wrapper img {
+  position: relative;
+  z-index: 10;
+  opacity: 1 !important;
+  filter: none !important;
+  will-change: auto;
+}
+
+/* 2. Dedicated Outer Glow Layer (Thin, tight, hugs logo edges) */
+.logo-glow-aura {
+  position: absolute;
+  inset: -1.5px -2.5px;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 0;
+  /* Thin, tight multi-layer 3-color box-shadow */
+  box-shadow:
+    0 0 4px rgba(255, 246, 229, 0.65),
+    1.5px -1px 8px rgba(255, 133, 162, 0.55),
+    -1.5px 1px 7px rgba(142, 197, 252, 0.55);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 246, 229, 0.65) 0%, transparent 45%),
+              radial-gradient(circle at 75% 35%, rgba(255, 133, 162, 0.55) 0%, transparent 48%),
+              radial-gradient(circle at 45% 80%, rgba(142, 197, 252, 0.55) 0%, transparent 48%);
+  filter: blur(2.5px);
+  transform: translateZ(0);
+  animation: logoGlow 3s ease-in-out infinite;
+}
+
+/* 3. Context Variations */
+
+/* Navbar: Extra Thin & Subtle */
+.logo-glow-nav .logo-glow-aura {
+  inset: -1px -1.5px;
+  box-shadow:
+    0 0 3px rgba(255, 246, 229, 0.5),
+    1px -0.5px 6px rgba(255, 133, 162, 0.45),
+    -1px 0.5px 5px rgba(142, 197, 252, 0.45);
+  filter: blur(2px);
+  animation: logoGlowNav 3s ease-in-out infinite;
+}
+
+/* Splash: Tight, Dreamy Entrance Light */
+.logo-glow-splash .logo-glow-aura {
+  inset: -2px -4px;
+  box-shadow:
+    0 0 6px rgba(255, 246, 229, 0.75),
+    2.5px -1.5px 11px rgba(255, 133, 162, 0.65),
+    -2.5px 2px 10px rgba(142, 197, 252, 0.65);
+  filter: blur(3.5px);
+  animation: logoGlowSplash 3s ease-in-out infinite;
+}
+
+/* Hero: Warm Café Atmosphere */
+.logo-glow-hero .logo-glow-aura {
+  inset: -1.5px -2.5px;
+  box-shadow:
+    0 0 4px rgba(255, 246, 229, 0.65),
+    1.5px -1px 8px rgba(255, 133, 162, 0.55),
+    -1.5px 1px 7px rgba(142, 197, 252, 0.55);
+  filter: blur(2.5px);
+  animation: logoGlow 3s ease-in-out infinite;
+}
+
+/* Footer: Warm On Dark Background */
+.logo-glow-footer .logo-glow-aura {
+  inset: -1px -2px;
+  box-shadow:
+    0 0 4px rgba(255, 246, 229, 0.55),
+    1.5px -1px 7px rgba(255, 133, 162, 0.45),
+    -1.5px 1px 6px rgba(142, 197, 252, 0.45);
+  filter: blur(2px);
+  animation: logoGlowFooter 3s ease-in-out infinite;
+}
+
+/* 4. Desktop Hover Enhancement (Subtle brightness without thickness expansion) */
+@media (hover: hover) and (pointer: fine) {
+  .logo-glow-wrapper:hover .logo-glow-aura,
+  .group:hover .logo-glow-aura {
+    opacity: 0.75;
+    filter: brightness(1.15) blur(2.5px);
+  }
+}
+
+/* 5. Smooth Breathing DIM → BRIGHT → DIM Keyframes (No scale expansion!) */
+
+/* General (Hero / Default): DIM ~0.28 -> BRIGHT ~0.65 -> DIM ~0.28 */
+@keyframes logoGlow {
+  0% {
+    opacity: 0.28;
+    filter: brightness(0.92) blur(2.5px);
+  }
+  50% {
+    opacity: 0.65;
+    filter: brightness(1.1) blur(3px);
+  }
+  100% {
+    opacity: 0.28;
+    filter: brightness(0.92) blur(2.5px);
+  }
+}
+
+/* Navbar: Subtle DIM ~0.22 -> BRIGHT ~0.55 -> DIM ~0.22 */
+@keyframes logoGlowNav {
+  0% {
+    opacity: 0.22;
+    filter: brightness(0.9) blur(2px);
+  }
+  50% {
+    opacity: 0.55;
+    filter: brightness(1.08) blur(2.5px);
+  }
+  100% {
+    opacity: 0.22;
+    filter: brightness(0.9) blur(2px);
+  }
+}
+
+/* Splash: DIM ~0.35 -> BRIGHT ~0.72 -> DIM ~0.35 */
+@keyframes logoGlowSplash {
+  0% {
+    opacity: 0.35;
+    filter: brightness(0.92) blur(3px);
+  }
+  50% {
+    opacity: 0.72;
+    filter: brightness(1.12) blur(3.8px);
+  }
+  100% {
+    opacity: 0.35;
+    filter: brightness(0.92) blur(3px);
+  }
+}
+
+/* Footer: DIM ~0.24 -> BRIGHT ~0.58 -> DIM ~0.24 */
+@keyframes logoGlowFooter {
+  0% {
+    opacity: 0.24;
+    filter: brightness(0.9) blur(2px);
+  }
+  50% {
+    opacity: 0.58;
+    filter: brightness(1.08) blur(2.5px);
+  }
+  100% {
+    opacity: 0.24;
+    filter: brightness(0.9) blur(2px);
+  }
+}
+
+/* 6. Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .logo-glow-aura {
+    animation: none !important;
+    opacity: 0.45;
+  }
+}
